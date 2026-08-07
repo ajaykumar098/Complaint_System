@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import { safeGetItem, safeGetJSON } from '../utils/localStorageHelper'
 
-const API_BASE = 'http://localhost:8080/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
 
 export const AuthContext = createContext(null)
 

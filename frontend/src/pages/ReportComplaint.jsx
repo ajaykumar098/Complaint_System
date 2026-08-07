@@ -8,7 +8,7 @@ import { useGeolocation } from '../hooks/useGeolocation'
 import GlassCard from '../components/GlassCard'
 import NeonButton from '../components/NeonButton'
 
-const API_BASE = 'http://localhost:8080/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
 
 export default function ReportComplaint() {
   const { currentUser } = useAuth()

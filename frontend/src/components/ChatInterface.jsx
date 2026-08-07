@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import GlassCard from './GlassCard'
 import NeonButton from './NeonButton'
 
-const API_BASE = 'http://localhost:8080/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
 
 const examplePrompts = [
   "What is my complaint status?",

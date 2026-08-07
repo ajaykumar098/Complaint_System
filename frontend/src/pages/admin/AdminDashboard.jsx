@@ -5,7 +5,7 @@ import GlassCard from '../../components/GlassCard'
 import NeonButton from '../../components/NeonButton'
 import CustomSelect from '../../components/CustomSelect'
 
-const API_BASE = 'http://localhost:8080/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
 
 const statusColors = {
   SENT: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
