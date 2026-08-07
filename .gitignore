@@ -1,0 +1,41 @@
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+target/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+
+# Logs
+*.log
+startup.log
+ai-debug.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Sensitive configuration files
+backend/src/main/resources/application.properties
+backend/target/classes/application.properties
+
+# Node modules
+frontend/node_modules/
+frontend/.vite/
+
+# Build artifacts
+frontend/dist/
+frontend/build/
+
+# Uploads
+uploads/
