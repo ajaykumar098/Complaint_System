@@ -4,6 +4,8 @@ import { useAuth } from '../hooks/useAuth'
 import GlassCard from '../components/GlassCard'
 import NeonButton from '../components/NeonButton'
 
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+
 export default function Profile() {
   const { currentUser, updateUser } = useAuth()
   const [isEditing, setIsEditing] = useState(false)
@@ -48,7 +50,7 @@ export default function Profile() {
 
     setSearching(true)
     try {
-      const res = await fetch(`http://localhost:8080/api/complaints/by-complaint-id/${searchComplaintId}`)
+      const res = await fetch(`${API_BASE}/complaints/by-complaint-id/${searchComplaintId}`)
       if (!res.ok) {
         if (res.status === 404) {
           alert('Complaint not found. Please check the ID and try again.')
