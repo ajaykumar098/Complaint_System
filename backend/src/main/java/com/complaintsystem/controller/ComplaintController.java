@@ -32,6 +32,7 @@ public class ComplaintController {
             @RequestParam("userId") String userId,
             @RequestParam("userName") String userName,
             @RequestParam(value = "userMobile", required = false) String userMobile,
+            @RequestParam(value = "userEmail", required = false) String userEmail,
             @RequestParam(value = "locationAddress", required = false) String locationAddress,
             @RequestParam(value = "locationLat", required = false) Double locationLat,
             @RequestParam(value = "locationLng", required = false) Double locationLng,
@@ -44,6 +45,7 @@ public class ComplaintController {
             request.setUserId(userId);
             request.setUserName(userName);
             request.setUserMobile(userMobile);
+            request.setUserEmail(userEmail);
             request.setLocationAddress(locationAddress);
             request.setLocationLat(locationLat);
             request.setLocationLng(locationLng);
