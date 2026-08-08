@@ -155,6 +155,9 @@ export default function ReportComplaint() {
       if (currentUser.mobile) {
         formData.append('userMobile', currentUser.mobile)
       }
+      if (currentUser.email) {
+        formData.append('userEmail', currentUser.email)
+      }
       if (address) {
         formData.append('locationAddress', address)
       }

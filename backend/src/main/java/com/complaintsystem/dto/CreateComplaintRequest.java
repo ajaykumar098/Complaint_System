@@ -22,6 +22,8 @@ public class CreateComplaintRequest {
 
     private String userMobile;
 
+    private String userEmail;
+
     private String locationAddress;
 
     private Double locationLat;
@@ -32,12 +34,13 @@ public class CreateComplaintRequest {
 
     public CreateComplaintRequest() {}
 
-    public CreateComplaintRequest(String description, String priority, String userId, String userName, String userMobile, String locationAddress, Double locationLat, Double locationLng, List<MultipartFile> evidenceFiles) {
+    public CreateComplaintRequest(String description, String priority, String userId, String userName, String userMobile, String userEmail, String locationAddress, Double locationLat, Double locationLng, List<MultipartFile> evidenceFiles) {
         this.description = description;
         this.priority = priority;
         this.userId = userId;
         this.userName = userName;
         this.userMobile = userMobile;
+        this.userEmail = userEmail;
         this.locationAddress = locationAddress;
         this.locationLat = locationLat;
         this.locationLng = locationLng;
@@ -82,6 +85,14 @@ public class CreateComplaintRequest {
 
     public void setUserMobile(String userMobile) {
         this.userMobile = userMobile;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getLocationAddress() {

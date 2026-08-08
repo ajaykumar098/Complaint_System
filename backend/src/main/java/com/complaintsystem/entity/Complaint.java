@@ -46,6 +46,9 @@ public class Complaint {
     @Column
     private String userMobile;
 
+    @Column(name = "user_email")
+    private String userEmail;
+
     @Column(name = "location_address", columnDefinition = "TEXT")
     private String locationAddress;
 
@@ -85,7 +88,7 @@ public class Complaint {
 
     public Complaint() {}
 
-    public Complaint(Long id, String complaintId, String description, Priority priority, Status status, String userId, String userName, String userMobile, String locationAddress, Double locationLat, Double locationLng, List<ComplaintEvidence> evidence, AdminResponse adminResponse, List<ChatMessage> chatMessages, List<Notification> notifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Complaint(Long id, String complaintId, String description, Priority priority, Status status, String userId, String userName, String userMobile, String userEmail, String locationAddress, Double locationLat, Double locationLng, List<ComplaintEvidence> evidence, AdminResponse adminResponse, List<ChatMessage> chatMessages, List<Notification> notifications, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.complaintId = complaintId;
         this.description = description;
@@ -94,6 +97,7 @@ public class Complaint {
         this.userId = userId;
         this.userName = userName;
         this.userMobile = userMobile;
+        this.userEmail = userEmail;
         this.locationAddress = locationAddress;
         this.locationLat = locationLat;
         this.locationLng = locationLng;
@@ -167,6 +171,14 @@ public class Complaint {
 
     public void setUserMobile(String userMobile) {
         this.userMobile = userMobile;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getLocationAddress() {

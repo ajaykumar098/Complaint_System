@@ -55,6 +55,7 @@ public class ComplaintService {
         complaint.setUserId(request.getUserId());
         complaint.setUserName(request.getUserName());
         complaint.setUserMobile(request.getUserMobile());
+        complaint.setUserEmail(request.getUserEmail());
         complaint.setLocationAddress(request.getLocationAddress());
         complaint.setLocationLat(request.getLocationLat());
         complaint.setLocationLng(request.getLocationLng());
