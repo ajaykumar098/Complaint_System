@@ -23,7 +23,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="glass-panel px-4 md:px-6 py-4 flex items-center justify-between gap-4">
+    <nav className="relative glass-panel px-4 md:px-6 py-4 flex items-center justify-between gap-4">
       <div className="flex items-center gap-2">
         <span className="text-xl font-bold bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
           ComplaintSys
@@ -72,7 +72,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 md:hidden glass-panel border-t border-white/10 p-4 space-y-4">
+        <div className="absolute top-full left-0 right-0 z-50 md:hidden glass-panel border-t border-white/10 p-4 space-y-4">
           <div className="flex flex-col space-y-2">
             {navLinks.map(({ to, label, end }) => (
               <NavLink
