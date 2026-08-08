@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { FiClock, FiMapPin, FiAlertCircle, FiArrowLeft } from 'react-icons/fi'
+import { FiClock, FiMapPin, FiAlertCircle, FiArrowLeft, FiPhone } from 'react-icons/fi'
 import GlassCard from '../../components/GlassCard'
 import NeonButton from '../../components/NeonButton'
 import ChatThread from '../../components/ChatThread'
