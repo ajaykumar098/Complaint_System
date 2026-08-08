@@ -258,27 +258,34 @@ export default function AdminDashboard() {
                       </div>
                       <div>
                         <p className="text-white/50">Email</p>
-                        <p className="text-white/90 text-xs">{complaint.userEmail || complaint.userId}</p>
+                        <p className="text-white/90 text-xs">{complaint.userEmail || 'Not available'}</p>
                       </div>
                     </div>
 
                     <p className="text-white/80 text-sm line-clamp-2 mb-3">{complaint.description}</p>
 
                     {/* Evidence Thumbnails */}
-                    {imageEvidence.length > 0 && (
+                    {(imageEvidence.length > 0 || videoEvidence.length > 0) && (
                       <div className="flex gap-2 mb-3 overflow-x-auto">
                         {imageEvidence.slice(0, 3).map((evidence, index) => (
                           <img
-                            key={index}
+                            key={`img-${index}`}
                             src={evidence.filePath}
                             alt={`Evidence ${index + 1}`}
                             className="w-16 h-16 object-cover rounded-lg border border-white/10 hover:border-neon-blue/50 transition-colors cursor-pointer flex-shrink-0"
                             onClick={() => window.open(evidence.filePath, '_blank')}
                           />
                         ))}
-                        {imageEvidence.length > 3 && (
+                        {videoEvidence.slice(0, 2).map((evidence, index) => (
+                          <video
+                            key={`vid-${index}`}
+                            src={evidence.filePath}
+                            className="w-16 h-16 object-cover rounded-lg border border-white/10 flex-shrink-0"
+                          />
+                        ))}
+                        {(imageEvidence.length + videoEvidence.length) > 3 && (
                           <div className="w-16 h-16 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white/50 text-xs flex-shrink-0">
-                            +{imageEvidence.length - 3}
+                            +{(imageEvidence.length + videoEvidence.length) - 3}
                           </div>
                         )}
                       </div>

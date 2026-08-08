@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { FiMenu, FiX } from 'react-icons/fi'
 import { useAuth } from '../hooks/useAuth'
 import Background3D from '../components/Background3D'
 import NeonButton from '../components/NeonButton'
@@ -6,6 +8,7 @@ import NeonButton from '../components/NeonButton'
 export default function AdminLayout() {
   const { adminUsername, logout } = useAuth()
   const navigate = useNavigate()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleLogout = () => {
     const redirectTo = logout()
@@ -22,15 +25,36 @@ export default function AdminLayout() {
           </h1>
           <div className="flex items-center gap-4">
             {adminUsername && (
-              <span className="text-sm text-white/60">
+              <span className="hidden sm:block text-sm text-white/60">
                 Admin: <span className="text-neon-purple font-medium">{adminUsername}</span>
               </span>
             )}
-            <NeonButton variant="outline" onClick={handleLogout} className="text-sm py-2 px-4">
+            <NeonButton variant="outline" onClick={handleLogout} className="hidden sm:block text-sm py-2 px-4">
+              Logout
+            </NeonButton>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="sm:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+            >
+              {isMobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            </button>
+          </div>
+        </header>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-full left-0 right-0 sm:hidden glass-panel border-t border-white/10 p-4 space-y-4 mx-4">
+            {adminUsername && (
+              <div className="text-sm text-white/60">
+                Admin: <span className="text-neon-purple font-medium">{adminUsername}</span>
+              </div>
+            )}
+            <NeonButton variant="outline" onClick={handleLogout} className="w-full text-sm py-2 px-4">
               Logout
             </NeonButton>
           </div>
-        </header>
+        )}
+
         <main className="max-w-7xl mx-auto px-4 py-6">
           <Outlet />
         </main>
