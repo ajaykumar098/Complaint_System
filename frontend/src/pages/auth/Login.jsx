@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiShield, FiUser, FiArrowLeft } from 'react-icons/fi'
@@ -24,7 +24,14 @@ export default function Login() {
   const { login, adminLogin } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const successMessage = location.state?.message
+  const [successMessage, setSuccessMessage] = useState(location.state?.message || '')
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => setSuccessMessage(''), 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [successMessage])
 
   const collapse = () => {
     setActiveSide(null)
