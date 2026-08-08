@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { useAuth } from '../hooks/useAuth'
@@ -16,6 +16,23 @@ export default function Navbar() {
   const { currentUser, logout } = useAuth()
   const navigate = useNavigate()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const menuRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isMobileMenuOpen])
 
   const handleLogout = () => {
     const redirectTo = logout()
@@ -72,7 +89,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 z-50 md:hidden glass-panel border-t border-white/10 p-4 space-y-4">
+        <div ref={menuRef} className="absolute top-full left-0 right-0 z-50 md:hidden glass-panel border-t border-white/10 p-4 space-y-4">
           <div className="flex flex-col space-y-2">
             {navLinks.map(({ to, label, end }) => (
               <NavLink
