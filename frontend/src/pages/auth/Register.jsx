@@ -15,7 +15,7 @@ export default function Register() {
   const [passwordFocused, setPasswordFocused] = useState(false)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const { register } = useAuth()
+  const { register, logout } = useAuth()
   const navigate = useNavigate()
 
   const passwordsMatch = password === confirmPassword && confirmPassword.length > 0
@@ -30,7 +30,8 @@ export default function Register() {
     setSubmitting(true)
     try {
       await register(name, email, password, mobile)
-      navigate('/', { state: { message: 'Registration successful! Welcome to the complaint system.' } })
+      logout()
+      navigate('/login', { state: { message: 'Registration successful! Please log in.' } })
     } catch (err) {
       setError(err.message)
     } finally {
