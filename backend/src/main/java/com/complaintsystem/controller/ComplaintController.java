@@ -101,14 +101,14 @@ public class ComplaintController {
         }
     }
 
-    @PutMapping("/{id}/cancel")
+    @DeleteMapping("/{id}/cancel")
     public ResponseEntity<?> cancelComplaint(@PathVariable Long id) {
         try {
-            Complaint complaint = complaintService.cancelComplaint(id);
-            if (complaint == null) {
+            boolean deleted = complaintService.cancelComplaint(id);
+            if (!deleted) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(complaint);
+            return ResponseEntity.noContent().build();
         } catch (IllegalStateException e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }

@@ -109,10 +109,10 @@ public class ComplaintService {
     }
 
     @Transactional
-    public Complaint cancelComplaint(Long id) {
+    public boolean cancelComplaint(Long id) {
         Complaint complaint = complaintRepository.findById(id).orElse(null);
         if (complaint == null) {
-            return null;
+            return false;
         }
 
         // Only allow cancel if status is SENT
@@ -120,13 +120,11 @@ public class ComplaintService {
             throw new IllegalStateException("Complaint can only be cancelled when status is SENT");
         }
 
-        complaint.setStatus(Complaint.Status.CANCELLED);
-        Complaint savedComplaint = complaintRepository.save(complaint);
+        // Deleting cascades automatically to evidence, adminResponse, chatMessages,
+        // and notifications (cascade = ALL, orphanRemoval = true on Complaint entity)
+        complaintRepository.delete(complaint);
 
-        // Create notification for cancellation
-        notificationService.createNotification(savedComplaint, Notification.NotificationType.REJECTED, "Complaint cancelled");
-
-        return savedComplaint;
+        return true;
     }
 
     public List<Complaint> getAllComplaints(Complaint.Status status, Complaint.Priority priority, String sortBy) {

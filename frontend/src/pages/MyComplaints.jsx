@@ -76,14 +76,15 @@ export default function MyComplaints() {
   const handleDelete = async (complaintDbId) => {
     try {
       const res = await fetch(`${API_BASE}/complaints/${complaintDbId}/cancel`, {
-        method: 'PUT',
+        method: 'DELETE',
       })
       if (!res.ok) throw new Error('Failed to cancel complaint')
-      const updated = await res.json()
-      setComplaints((prev) => prev.map((c) => (c.id === complaintDbId ? updated : c)))
+      setComplaints((prev) => prev.filter((c) => c.id !== complaintDbId))
       setDeleteConfirm(null)
     } catch (err) {
       console.error('Failed to cancel complaint:', err)
+      alert('Failed to cancel complaint. Please try again.')
+      setDeleteConfirm(null)
     }
   }
 
