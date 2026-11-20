@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-xl bg-slate-900/80 border border-slate-800/80 rounded-2xl shadow-xl shadow-slate-950/40;
+  }
+
+  .glass-panel-subtle {
+    @apply backdrop-blur-md bg-slate-900/50 border border-slate-800/60 rounded-xl;
+  }
+}
+
+body {
+  @apply bg-dark-base text-slate-100 font-sans antialiased min-h-screen selection:bg-blue-600/30 selection:text-white;
+}
+
+@keyframes bg-drift-slow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, 3%) scale(1.05);
+  }
+}
+
+@keyframes bg-drift-slower {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate(-5%, -4%) scale(1);
+  }
+}
+
+.bg-animate-drift-slow {
+  animation: bg-drift-slow 26s ease-in-out infinite;
+}
+
+.bg-animate-drift-slower {
+  animation: bg-drift-slower 38s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-animate-drift-slow,
+  .bg-animate-drift-slower {
+    animation: none;
+  }
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e1116;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
