@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { safeGetItem } from '../utils/localStorageHelper'
 
+import { API_BASE } from './config'
+
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: API_BASE,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json' },
 })

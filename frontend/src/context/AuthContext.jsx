@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import { safeGetItem, safeGetJSON } from '../utils/localStorageHelper'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+import { API_BASE } from '../api/config'
 
 export const AuthContext = createContext(null)
 
@@ -39,10 +39,10 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({ name, email, mobile, password }),
       })
 
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Registration failed')
+      if (!res.ok || (data.success !== undefined && !data.success)) {
+        throw new Error(data.error || data.message || 'Registration failed')
       }
 
       const sessionUser = {
@@ -68,10 +68,10 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({ email, password }),
       })
 
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Login failed')
+      if (!res.ok || (data.success !== undefined && !data.success)) {
+        throw new Error(data.error || data.message || 'Login failed')
       }
 
       const sessionUser = {
@@ -97,10 +97,10 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({ username, password }),
       })
 
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Admin login failed')
+      if (!res.ok || (data.success !== undefined && !data.success)) {
+        throw new Error(data.error || data.message || 'Admin login failed')
       }
 
       localStorage.setItem('isAdmin', 'true')
@@ -131,9 +131,9 @@ export function AuthProvider({ children }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, mobile }),
       })
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
       if (!res.ok) {
-        throw new Error(data.message || 'Failed to update profile')
+        throw new Error(data.error || data.message || 'Failed to update profile')
       }
       const updatedUser = {
         id: data.id,

@@ -3,7 +3,7 @@ import { FiSend, FiCpu, FiX, FiTrash2 } from 'react-icons/fi'
 import { useAuth } from '../hooks/useAuth'
 import NeonButton from './NeonButton'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+import { API_BASE } from '../api/config'
 
 const examplePrompts = [
   "What is my complaint status?",

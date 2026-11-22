@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Configuration
 public class CorsConfig {
 
-    @Value("${cors.allowed-origins:http://localhost:5173,http://localhost:3000}")
+    @Value("${cors.allowed-origins:http://localhost:5173,http://localhost:3000,https://*.vercel.app}")
     private String allowedOrigins;
 
     @Bean
@@ -21,7 +21,7 @@ public class CorsConfig {
         config.setAllowCredentials(true);
         Arrays.stream(allowedOrigins.split(","))
               .map(String::trim)
-              .forEach(config::addAllowedOrigin);
+              .forEach(config::addAllowedOriginPattern);
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setMaxAge(3600L);

@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import GlassCard from '../components/GlassCard'
 import NeonButton from '../components/NeonButton'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+import { API_BASE } from '../api/config'
 
 const statusStyles = {
   SENT: 'text-sky-400 bg-sky-500/10 border-sky-500/20',

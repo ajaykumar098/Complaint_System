@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth'
 import GlassCard from '../components/GlassCard'
 import NeonButton from '../components/NeonButton'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+import { API_BASE } from '../api/config'
 
 const notificationIcons = {
   SENT: { icon: FiCheckCircle, color: 'text-sky-400', bgColor: 'bg-sky-500/15 border border-sky-500/25' },

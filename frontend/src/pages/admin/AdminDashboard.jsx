@@ -5,7 +5,7 @@ import GlassCard from '../../components/GlassCard'
 import NeonButton from '../../components/NeonButton'
 import CustomSelect from '../../components/CustomSelect'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+import { API_BASE } from '../../api/config'
 
 const statusColors = {
   SENT: 'bg-sky-500/10 text-sky-400 border-sky-500/25',
